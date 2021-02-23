@@ -1,0 +1,36 @@
+<app-weather-report (cityNames)="displayCity($event)"></app-weather-report>
+
+<div class="container">
+    <div class="row">
+        <div class="header-favourite">
+            <a href="/home">
+              <img class="arrow" src="../../../assets/left-arrow.png" alt=""></a>
+            <p>Recent Search</p>
+            <img (click)="openSearch()" class="blackSearch" src="../../../assets/black_search.png" alt="">
+          </div>
+        <div class="searchHistory">
+            <div *ngIf="recentSearchhistory === 'false'" class="empty">
+                <img src="../../../assets/favourite.png" alt="">
+                <p>No Recent Search </p>
+            </div>
+            <div *ngIf="recentSearchhistory === 'true'" class="recentSearch">
+                <p>
+                    You recently searched for
+                    <button type="button" (click)="clearAll()">Clear All</button>
+                </p>
+                <div class="search" *ngFor="let recent of recentSearch">
+                    <h6>{{recent.location}}, {{recent.country}}</h6>
+                    <div class="temperature">
+                        <img [src]="getIcon(recent.description)" alt="">
+                        <p>{{recent.temperature}} <span>&#176;C</span> </p>
+                        <p class="condition">{{recent.description | titlecase}}</p>
+                    </div>
+                    <span>
+                        <i class="icon-heart-empty" *ngIf="!isFavourite"></i>
+                        <i class="fa fa-heart" *ngIf="isFavourite"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

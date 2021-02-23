@@ -1,0 +1,310 @@
+@import '../../variables.scss';
+
+.container {
+
+  .row {
+
+    .header-favourite{
+      display: none;
+    }
+
+    .searchHistory {
+      position: absolute;
+      top: 27%;
+
+      .empty {
+        position: relative;
+        top: -12%;
+
+        img {
+          margin-left: 34%;
+          margin-top: 10%;
+        }
+
+        p {
+          color: $white;
+          font-size: 18px;
+          font-weight: 500;
+          text-align: center;
+          margin-top: 2%;
+          position: relative;
+          left: -9.8%;
+        }
+      }
+
+      .recentSearch {
+        position: absolute;
+        margin-left: 7%;
+        margin-top: 2%;
+
+        p {
+          position: relative;
+          top: -35px;
+          color: #FFFFFF;
+          font-size: 13px;
+          width: 100%;
+          margin-left: 1%;
+        }
+
+        button {
+          border: none;
+          z-index: 2;
+          color: #FFFFFF;
+          font-size: 13px;
+          background-color: rgba(255, 255, 255, 0);
+          position: relative;
+          left: 71%;
+
+          &:focus {
+            outline: none;
+          }
+        }
+
+        .search {
+          height: 73px;
+          width: 923px;
+          background-color: rgba(255, 255, 255, 0.1);
+          color: white;
+          position: relative;
+          margin-top: -8px;
+          top: -23px;
+
+          &:focus {
+            outline: none;
+            background-color: rgba(255, 255, 255, 0.2);
+
+            h6 {
+              color: $yellow;
+            }
+          }
+
+          h6 {
+            position: relative;
+            top: 33%;
+            margin-left: 1.5%;
+            font-weight: 500;
+            font-size: 16px;
+          }
+
+          .temperature {
+            position: relative;
+            width: 231px;
+            margin-left: 37%;
+            top: -6%;
+
+            img {
+              width: 36px;
+              height: 38px;
+              position: relative;
+              top: -9px;
+              left: 22%;
+            }
+
+            p {
+              font-size: 32px;
+              width: 73px;
+              color: #FFFFFF;
+              font-weight: 500;
+              position: absolute;
+              left: 40%;
+              top: -9px;
+
+              span {
+                content: "\00B0";
+                font-size: 16px;
+                position: relative;
+                left: -5%;
+                top: -3px;
+              }
+            }
+
+            .condition {
+              font-size: 19px;
+              width: 200px;
+              position: relative;
+              margin-left: 40%;
+              top: -36px;
+            }
+          }
+
+          span {
+            font-size: 20px;
+            position: absolute;
+            left: 95%;
+            top: 28%;
+
+            .icon-heart-empty {
+              position: relative;
+              left: -12%;
+            }
+
+            .fa {
+              position: relative;
+              left: -12%;
+            }
+          }
+
+          .image {
+            position: relative;
+            margin-left: 94%;
+            top: -80px;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+@media screen and (max-width: 400px) {
+
+  .container {
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 104%;
+
+    .row {
+
+      .header-favourite {
+        display: block;
+        background-color: #FFFFFF;
+        height: 59px;
+        width: 106.4%;
+        position: relative;
+        left: -3.2%;
+
+        .arrow {
+          width: 25px;
+          position: relative;
+          top: 27%;
+          left: 6%;
+        }
+
+        p {
+          font-size: 22px;
+          position: relative;
+          top: -21%;
+          margin-left: 24%;
+          color: #292F33;
+          font-weight: 500;
+        }
+
+        .blackSearch {
+          width: 24px;
+          position: relative;
+          top: -98%;
+          left: 88%;
+        }
+      }
+
+      .searchHistory {
+        margin-left: -2%;
+        top: 108%;
+        height: 500px;
+
+        .empty {
+          position: relative;
+          top: 24%;
+
+          img{
+          position: relative;
+          top: 24%;
+          left: -9%;
+        }
+
+          p {
+            width: 100%;
+            left: -2%;
+          }
+        }
+
+        .recentSearch {
+          top: 2%;
+          width: 93%;
+          margin-left: 1%;
+
+          p {
+            position: relative;
+            top: -2%;
+            margin-left: 1%;
+            color: #FFFFFF;
+            font-size: 13px;
+
+            button {
+              left: 26%;
+              top: 1%;
+            }
+          }
+
+          .search {
+            width: 99%;
+            margin: 0;
+            top: 2%;
+            height: 85px;
+
+            h6 {
+              top: 14%;
+              font-size: 16px;
+              margin-left: 3%;
+              color: $yellow;
+            }
+
+            .temperature {
+              width: 100%;
+              margin-left: 0;
+              height: 50px;
+
+              img {
+                top: 23%;
+                left: 3%;
+              }
+
+              p {
+                width: 100%;
+                left: 0;
+                margin-left: 17%;
+                top: 32%;
+                font-size: 20px;
+
+                span {
+                  top: 1%;
+                  left: -5px;
+                }
+              }
+
+              .condition {
+                width: 100%;
+                margin-left: 0;
+                left: 6%;
+                text-align: center;
+                top: -19px;
+                font-size: 16px;
+              }
+            }
+
+            span{
+
+            .icon-heart-empty {
+              margin: 0;
+              left: -73%;
+              top: -66%;
+              width: 24px;
+              height: 22px;
+            }
+
+            .fa {
+              margin: 0;
+              left: -73%;
+              top: -66%;
+              width: 24px;
+              height: 22px;
+            }
+          }
+          }
+        }
+      }
+    }
+  }
+
+}

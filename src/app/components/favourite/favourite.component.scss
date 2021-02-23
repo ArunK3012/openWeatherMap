@@ -1,0 +1,368 @@
+@import '../../variables.scss';
+
+.container {
+
+  .row {
+
+    .header-favourite {
+      display: none;
+    }
+
+    .favouriteCities {
+      position: absolute;
+      top: 27%;
+      margin-left: 7%;
+
+      .emptyList {
+        position: relative;
+        top: -12%;
+
+        img {
+          margin-left: 26.9%;
+          margin-top: 10%;
+        }
+
+        p {
+          color: $white;
+          font-size: 18px;
+          font-weight: 500;
+          text-align: center;
+          margin-top: 2%;
+          position: relative;
+          left: -17%;
+        }
+      }
+
+      .favouriteList {
+        position: absolute;
+        top: 27%;
+        margin-top: -7px;
+
+        p {
+          position: relative;
+          top: -9%;
+          margin-left: 1%;
+          color: $white;
+          font-size: 13px;
+        }
+
+        button {
+          border: none;
+          z-index: 2;
+          color: #FFFFFF;
+          font-size: 13px;
+          background-color: rgba(255, 255, 255, 0);
+          position: relative;
+          left: 70%;
+          top: -5px;
+
+          &:focus {
+            outline: none;
+          }
+        }
+
+        .favourite {
+          height: 73px;
+          width: 920px;
+          background-color: rgba(255, 255, 255, 0.1);
+          color: white;
+          position: relative;
+          top: 14px;
+          margin-top: -8px;
+
+          &:focus {
+            outline: none;
+            background-color: rgba(255, 255, 255, 0.2);
+
+            h6 {
+              color: $yellow;
+            }
+          }
+
+          h6 {
+            position: relative;
+            top: 32%;
+            margin-left: 1.5%;
+            font-weight: 500;
+            font-size: 16px;
+          }
+
+          .temperature {
+            position: relative;
+            width: 231px;
+            margin-left: 37%;
+
+            img {
+              width: 36px;
+              height: 38px;
+              position: relative;
+              top: -12px;
+              left: 22%;
+            }
+
+            p {
+              font-size: 32px;
+              width: 73px;
+              color: #FFFFFF;
+              font-weight: 500;
+              position: absolute;
+              left: 40%;
+              top: -13px;
+
+              span {
+                content: "\00B0";
+                font-size: 16px;
+                position: relative;
+                left: -2%;
+                top: -3px;
+              }
+            }
+
+            .condition {
+              font-size: 19px;
+              width: 170px;
+              position: relative;
+              margin-left: 43%;
+              top: -40px;
+            }
+          }
+
+          .image {
+            position: relative;
+            margin-left: 94%;
+            top: -80px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.modal {
+  width: 420px;
+  height: 220px;
+  position: relative;
+  top: -475px;
+  margin-left: 35%;
+  border-radius: 2px;
+
+  .modal-dialog {
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;
+
+    .modal-content {
+      border: none;
+      width: 106.3%;
+
+      .modal-body {
+        font-size: 15px;
+        text-align: center;
+        color: black;
+        position: relative;
+        top: 13px;
+      }
+
+      .modal-footer {
+        border: none;
+        background-color: rgba(255, 255, 255, 0);
+        position: relative;
+        margin-right: 25%;
+        top: 30px;
+
+        .close {
+          font-size: 15px;
+          background-color: rgba(255, 255, 255, 0);
+          color: black;
+          width: 65px;
+          height: 35px;
+          text-align: center;
+          font-weight: bolder;
+
+          &:focus {
+            outline: none;
+          }
+        }
+
+        .save {
+          border: none;
+          background-color: #F76B1C;
+          color: white;
+          font-size: 15px;
+          width: 106px;
+          height: 35px;
+          border-radius: 2px;
+
+          &:focus {
+            outline: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+
+  .container {
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 104%;
+
+    .row {
+
+      .header-favourite {
+        display: block;
+        background-color: #FFFFFF;
+        height: 59px;
+        width: 106.4%;
+        position: relative;
+        left: -3.2%;
+
+        .arrow {
+          width: 25px;
+          position: relative;
+          top: 27%;
+          left: 6%;
+        }
+
+        p {
+          font-size: 22px;
+          position: relative;
+          top: -21%;
+          margin-left: 24%;
+          color: #292F33;
+          font-weight: 500;
+        }
+
+        .blackSearch {
+          width: 24px;
+          position: relative;
+          top: -98%;
+          left: 88%;
+        }
+      }
+
+      .favouriteCities {
+        margin-left: -2%;
+        top: 108%;
+        height: 500px;
+
+        .emptyList {
+          position: relative;
+          top: 24%;
+
+          p {
+            width: 100%;
+            left: 2%;
+          }
+        }
+
+        .favouriteList {
+          top: 4%;
+          width: 93%;
+          margin-left: 1%;
+
+          p {
+            position: relative;
+            top: -2%;
+            margin-left: 1%;
+            color: #FFFFFF;
+            font-size: 13px;
+
+            button {
+              left: 26%;
+              top: 1%;
+            }
+          }
+
+          .favourite {
+            width: 100%;
+            margin: 0;
+            top: 2%;
+            height: 85px;
+
+            h6 {
+              top: 14%;
+              font-size: 16px;
+              margin-left: 3%;
+              color: $yellow;
+            }
+
+            .temperature {
+              width: 100%;
+              margin-left: 0;
+              height: 50px;
+
+              img {
+                top: 23%;
+                left: 3%;
+              }
+
+              p {
+                width: 100%;
+                left: 0;
+                margin-left: 17%;
+                top: 32%;
+                font-size: 20px;
+
+                span {
+                  top: 1%;
+                  left: -5px;
+                }
+              }
+
+              .condition {
+                width: 100%;
+                margin-left: 0;
+                left: 6%;
+                text-align: center;
+                top: -18px;
+                font-size: 16px;
+              }
+            }
+
+            .image {
+              margin: 0;
+              left: 87%;
+              top: -59%;
+              width: 24px;
+              height: 22px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .modal{
+    padding-right: 0px;
+    display: block;
+    width: 280px;
+    height: 138px;
+    margin-left: 6%;
+    border-radius: 4px;
+
+    .modal-body{
+      top: -6px;
+    color: rgba(0,0,0,0.54);
+    left: -3%;
+    }
+
+    .modal-footer{
+      top: -13px;
+    margin: 0;
+
+    .close{
+      color: #673AB7;
+    }
+
+    .save{
+      background-color: white;
+    color: #673AB7;
+    font-weight: 500;
+    }
+    }
+  }
+}

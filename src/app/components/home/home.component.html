@@ -1,0 +1,68 @@
+<app-weather-report (cityNames)="displayCity($event)"></app-weather-report>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="header-body">
+                <div class="displayDate">
+                    <p class="date">{{myDate | date: 'EEE, dd MMM yyyy &nbsp;&nbsp; hh:mm aaa' }}</p>
+                </div>
+                <div class="country">
+                    <h5 class="location">
+                        {{location | titlecase}}, {{country}}
+                    </h5>
+                    <p class="favourite">
+                        <button [style.color]="this.color" id="addToFavourite">
+                            <span (click)="onFavouriteAdd()" class="isFav" *ngIf="!isFavourite">
+                                <i class="icon-heart-empty"></i>
+                                <h6>Add to favourite</h6>
+                            </span>
+                            <span (click)="removeFavourite()" class="addedToFav" *ngIf="isFavourite">
+                                <i class="fa fa-heart"></i>
+                                <h6>Added to favourite</h6>
+                            </span>
+                        </button>
+                </div>
+                <div class="sunny">
+                    <img [src]="getIcon(description)" alt="">
+                    <!-- <img [src]="thumbnail" alt=""> -->
+                    <p> {{temperature}}
+                        <button (click)="convertToDegree()" [style.background-color]="this.backgroundColor"
+                            [disabled]="temperature<50" id="degree" class="degree"><span>&#176;</span>C</button>
+                        <button (click)="convertTofahrenite()" [style.background-color]="this.bgColor"
+                            [disabled]="temperature>50" id="fahrenite" class="fahrenite"><span>&#176;</span>F</button>
+                    </p>
+                    <h6>{{description | titlecase}}</h6>
+                </div>
+                <hr class="lineBarBelow">
+            </div>
+            <div class="details">
+                <div class="temperature">
+                    <img src="../../../assets/temperature_info.png" alt="">
+                    <p>Min - Max</p>
+                    <h4>{{tempMin}}<span>&#176;</span> - {{tempMax}}<span>&#176;</span></h4>
+                </div>
+                <div class="precipitation">
+                    <img src="../../../assets/precipitation_info.png" alt="">
+                    <p>Precipitation</p>
+                    <h4>{{precipitation}} %</h4>
+                </div>
+                <div class="humidity">
+                    <img src="../../../assets/humidity_info.png" alt="">
+                    <p>Humidity</p>
+                    <h4>{{humidity}} %</h4>
+                </div>
+                <div class="wind">
+                    <img src="../../../assets/wind_info.png" alt="">
+                    <p>Wind</p>
+                    <h4>{{wind}} mph</h4>
+                </div>
+                <div class="visibility">
+                    <img src="../../../assets/visibility_info.png" alt="">
+                    <p>Visibility</p>
+                    <h4>{{visibility}} m</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

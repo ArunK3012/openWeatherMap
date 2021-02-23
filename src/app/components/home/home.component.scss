@@ -1,0 +1,451 @@
+@import '../../variables.scss';
+
+
+body {
+  .container {
+    // width: 100%;
+    // height: 670px;
+    //   background-image: url('../../../assets/background.png');
+    //   font-family: 'Roboto', sans-serif;
+    position: absolute;
+    top: 23%;
+    margin-left: 9%;
+
+    .row {
+      // overflow-y: hidden;
+
+      .header-body {
+        position: relative;
+        top: 29px;
+
+        .displayDate {
+          display: none;
+        }
+
+        .country {
+
+          .location {
+            position: relative;
+            top: 3%;
+            margin-left: 8.2%;
+            color: $white;
+            font-size: 20px;
+            font-weight: 500;
+          }
+
+          .favourite {
+
+            button {
+              border: none;
+              z-index: 2;
+              color: $white;
+              font-size: 14px;
+              background-color: $bg-color;
+              margin-left: 8.2%;
+              font-size: 13px;
+              padding-bottom: 10px;
+              position: relative;
+
+              &:focus {
+                outline: none;
+              }
+
+
+              .isFav {
+                font-size: 20px;
+                position: relative;
+                left: -32%;
+
+                .icon-heart-empty {
+                  position: relative;
+                  left: -12%;
+                }
+
+
+                h6 {
+                  font-size: 13px;
+                  position: relative;
+                  top: -30px;
+                  left: 54%;
+                  font-weight: 400;
+                }
+              }
+
+              .addedToFav {
+                font-size: 20px;
+                position: relative;
+                left: -32%;
+
+                .fa {
+                  position: relative;
+                  left: -13%;
+                }
+
+                h6 {
+                  font-size: 13px;
+                  position: relative;
+                  top: -30px;
+                  left: 51%;
+                  font-weight: 400;
+                }
+              }
+            }
+          }
+        }
+
+        .sunny {
+          position: relative;
+          top: -40px;
+          width: 100%;
+          text-align: center;
+
+          img {
+            position: relative;
+            left: -1.8%;
+          }
+
+          p {
+            font-size: 64px;
+            height: 75px;
+            width: 100%;
+            color: #FFFFFF;
+            font-weight: 500;
+            position: relative;
+            left: -22px;
+          }
+
+          .fahrenite {
+            width: 28px;
+            height: 31px;
+            border-radius: 2px;
+            font-size: 16px;
+            color: #ffffff;
+            // background-color: rgba(255, 255, 255, 0);
+            border: 1px solid #ffffff;
+            position: relative;
+            left: -1.4%;
+            padding-left: 2px;
+
+            &:focus {
+              outline: none;
+            }
+
+            span {
+              content: "\00B0";
+              font-size: 22px;
+              position: relative;
+              left: -1px;
+              top: -4px;
+            }
+          }
+
+          .degree {
+            width: 28px;
+            height: 31px;
+            border-radius: 2px;
+            font-size: 16px;
+            color: #E32843;
+            // background-color: #ffffff;
+            border: 1px solid #ffffff;
+            position: relative;
+            left: -1.2%;
+            padding-left: 0px;
+
+            &:focus {
+              outline: none;
+            }
+
+            span {
+              content: "\00B0";
+              font-size: 22px;
+              position: relative;
+              left: 1%;
+              top: -4px;
+            }
+          }
+
+          h6 {
+            color: #FFFFFF;
+            font-size: 22px;
+            position: relative;
+            font-weight: 500;
+            width: 100%;
+            text-align: center;
+            left: -2.2%;
+          }
+        }
+
+        .lineBarBelow {
+          box-sizing: border-box;
+          width: 925px;
+          margin-left: 6.5%;
+          border: 1px solid $white;
+          position: relative;
+          top: 5%;
+        }
+      }
+
+      .details {
+        font-size: 15px;
+        color: white;
+        position: relative;
+        top: 38px;
+        width: 100%;
+        max-width: 100%;
+        display: inline-flex;
+        overflow-y: hidden;
+        overflow-x: auto;
+
+        .temperature {
+          position: relative;
+          margin-left: 10%;
+          width: 120px;
+          top: 23%;
+
+          p {
+            position: relative;
+            top: -34px;
+            margin-left: 27%;
+          }
+
+          h4 {
+            position: relative;
+            top: -45px;
+            margin-left: 27%;
+            font-size: 22px;
+            font-weight: 500;
+
+            span {
+              content: "\00B0";
+            }
+          }
+        }
+
+        .precipitation {
+          position: absolute;
+          margin-left: 24%;
+          top: 23%;
+
+          p {
+            position: relative;
+            top: -34px;
+            margin-left: 49%;
+          }
+
+          h4 {
+            position: relative;
+            top: -45px;
+            margin-left: 49%;
+            font-size: 22px;
+            font-weight: 500;
+          }
+        }
+
+        .humidity {
+          position: absolute;
+          margin-left: 40%;
+          top: 23%;
+
+          p {
+            position: relative;
+            top: -30px;
+            margin-left: 54%;
+          }
+
+          h4 {
+            position: relative;
+            top: -41px;
+            margin-left: 54%;
+            font-size: 22px;
+            font-weight: 500;
+            width: 68px;
+          }
+        }
+
+        .wind {
+          position: absolute;
+          margin-left: 54%;
+          top: 23%;
+
+          p {
+            position: relative;
+            top: -25px;
+            margin-left: 45%;
+          }
+
+          h4 {
+            position: relative;
+            top: -36px;
+            margin-left: 46%;
+            font-size: 22px;
+            font-weight: 500;
+            width: 100px;
+          }
+        }
+
+        .visibility {
+          position: absolute;
+          margin-left: 69%;
+          top: 23%;
+
+          p {
+            position: relative;
+            top: -19px;
+            margin-left: 45%;
+          }
+
+          h4 {
+            position: relative;
+            top: -30px;
+            margin-left: 47%;
+            font-size: 22px;
+            font-weight: 500;
+            width: 110px;
+          }
+        }
+      }
+
+      #mySidebar {
+        display: none;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+
+  body {
+    .container {
+      top: 17%;
+      position: absolute;
+      left: -10%;
+
+      .row {
+
+        .header-body {
+          top: 14%;
+
+          .displayDate {
+            display: block;
+            position: relative;
+
+            .date {
+              color: #FFFFFF;
+              text-align: center;
+              opacity: 60%;
+              left: 2%;
+              position: relative;
+            }
+          }
+
+          .country {
+            text-align: center;
+            width: 100%;
+            position: relative;
+            top: 3px;
+            height: 90px;
+
+            .location {
+              margin-left: -3%;
+            }
+
+            .favourite {
+
+              button {
+                top: -3px;
+                margin-left: -9%;
+
+                .isFav {
+                  left: -30%;
+                }
+
+                .addedToFav {
+                  left: -24%;
+                }
+              }
+            }
+          }
+
+          .sunny {
+            width: 100%;
+            margin: 0;
+            top: 10px;
+            position: relative;
+
+            img {
+              left: -2%;
+            }
+
+            p {
+              left: 0%;
+              font-size: 52px;
+              margin-left: -2%;
+            }
+
+            h6 {
+              left: 0%;
+              margin-left: -2%;
+              top: -10px;
+            }
+          }
+
+          .lineBarBelow {
+            margin-left: 0;
+            top: 45px;
+            left: -3%;
+            width: 106%;
+          }
+        }
+
+        .details {
+          // position: absolute;
+          // top: 439px;
+          left: 0;
+          margin-left: 0;
+          font-size: 13px;
+          width: 100%;
+
+          .temperature {
+            margin-left: 5%;
+
+            h4{
+              font-size: 18px;
+            }
+          }
+
+          .precipitation {
+            margin-left: 43%;
+
+            h4{
+              font-size: 18px;
+            }
+          }
+
+          .humidity {
+            margin-left: 86%;
+
+            h4{
+              font-size: 18px;
+            }
+          }
+
+          .wind {
+            margin-left: 122%;
+
+            h4{
+              font-size: 18px;
+            }
+          }
+
+          .visibility {
+            margin-left: 163%;
+
+            h4{
+              font-size: 18px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

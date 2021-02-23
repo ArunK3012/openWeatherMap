@@ -1,0 +1,40 @@
+<div class="container">
+    <div class="row">
+        <div class="header">
+            <div class="input-group">
+                <a class="sideNavBar">
+                    <img (click)="sideBarOpen()" src="../../../assets/menu_white.png" alt="">
+                </a>
+                <img src="../../../assets/logo_web.png" alt="Weather App Logo">
+                <div class="form-outline">
+                    <input type="search" id="search" name="search" class="form-control" [(ngModel)]="searchCityWeather"
+                        placeholder="Search city" (keyup.enter)="onSearch()" />
+                    <img src="../../../assets/search_white.png" alt="" (click)="onSearch()">
+                    <img (click)="openSearch()" class="searchIcon" src="../../../assets/search_white.png" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="w3-sidebar w3-bar-block w3-border-left" style="display:none" id="searchBar">
+            <a href="/home">
+                <img class="arrow" src="../../../assets/left-arrow.png" alt=""></a>
+            <input type="search" id="search" name="search" class="form-control" [(ngModel)]="searchCityWeather"
+                placeholder="Search city" (keyup.enter)="onSearch()" (keyup.enter)="closeAndRedirect()" />
+                <img (click)="closeSearchBar()" class="cancelSearch" src="../../../assets/clear_search.png" alt="">
+        </div>
+        <div class="title">
+            <a routerLink="/home">
+            <button class="home">HOME</button></a>
+            <a routerLink="/favourite">
+            <button class="favourite">FAVOURITE</button></a>
+            <a routerLink="/recentSearch">
+            <button class="recent">RECENT SEARCH</button></a>
+            <p class="date">{{myDate | date: 'EEE, dd MMM yyyy &nbsp;&nbsp; hh:mm aaa' }}</p>
+        </div>
+        <div class="w3-sidebar w3-bar-block w3-border-right" id="mySidebar">
+            <button routerLink="/home" (click)="sideBarClose()" class="home">Home</button>
+            <button routerLink="/favourite" (click)="sideBarClose()" class="favourite">Favourite</button>
+            <button routerLink="/recentSearch" (click)="sideBarClose()" class="recent">Recent Search</button>
+        </div>
+        <hr class="lineBar">
+    </div>
+</div>

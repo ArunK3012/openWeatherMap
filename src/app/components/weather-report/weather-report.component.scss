@@ -1,0 +1,303 @@
+@import '../../variables.scss';
+
+.container {
+  width: 100%;
+  height: 688px;
+  background-image: url('../../../assets/background.png');
+  font-family: 'Roboto', sans-serif;
+
+  .header {
+    height: 110px;
+
+    .header-favourite {
+      display: none;
+    }
+
+    .input-group {
+
+      .sideNavBar {
+        display: none;
+      }
+
+      img {
+        width: 135px;
+        height: 30px;
+        margin-top: 4%;
+        margin-left: 8%;
+      }
+
+      .form-outline {
+        position: relative;
+        margin-left: 34%;
+        margin-top: 3%;
+
+        .searchIcon {
+          display: none;
+        }
+
+        input {
+          background-color: rgba(255, 255, 255, 0.6);
+          border-radius: 3px;
+          color: white;
+          border: 1px solid;
+          width: 400px;
+          height: 40px;
+          border: 1px solid;
+          border-color: $white;
+          opacity: 30%;
+        }
+
+        :-ms-input-placeholder,
+        input::placeholder {
+          color: $white;
+          line-height: 19px;
+          opacity: 0.8;
+          // z-index: 10;
+          font-weight: 500;
+          color: white;
+
+        }
+
+        .form-label {
+          position: relative;
+          top: -48%;
+          left: 4%;
+          color: $white;
+          font-size: 16px;
+        }
+
+        img {
+          width: 20px;
+          height: 20px;
+          position: relative;
+          top: -63%;
+          left: 78%;
+        }
+      }
+    }
+  }
+
+  .title {
+    position: relative;
+    margin-left: 8%;
+    font-size: 14px;
+    margin-top: 1%;
+
+    button {
+      border: none;
+      z-index: 2;
+      border-bottom: 2px solid $bg-color;
+      color: $white;
+      font-size: 14px;
+      background-color: $bg-color;
+      margin-right: 2%;
+
+      &:active,
+      &:focus,
+      &:visited {
+        color: $yellow;
+        outline: none;
+        border-bottom: 2px solid $yellow;
+      }
+    }
+
+    .home {
+      width: 70px;
+    }
+
+    .favourite {
+      width: 100px;
+    }
+
+    .recent {
+      width: 140px;
+    }
+
+    .date {
+      position: relative;
+      top: -24px;
+      color: $white;
+      margin-left: 66%;
+    }
+  }
+
+  .lineBar {
+    box-sizing: border-box;
+    width: 927px;
+    margin-left: 9%;
+    margin-top: -3.3%;
+    border: 1px solid $white;
+  }
+
+  #mySidebar {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 400px) {
+
+  .container {
+    margin: 0%;
+    padding: 0%;
+    max-width: inherit;
+    width: 116%;
+    position: relative;
+    left: -6%;
+    height: 688px;
+    background-image: url('../../../assets/background_android.png');
+
+    .header {
+      height: 70px;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+
+      .input-group {
+
+        img {
+          position: relative;
+          top: 8px;
+          left: 9%;
+        }
+
+        .sideNavBar {
+          display: block;
+
+          img {
+            width: 24px;
+            height: 15px;
+            position: relative;
+            top: 65%;
+            left: 126%;
+          }
+        }
+
+        .form-outline {
+
+          input {
+            display: none;
+          }
+
+          img {
+            display: none;
+          }
+
+          .searchIcon {
+            display: block;
+            position: relative;
+            top: 43%;
+            left: 16%;
+            width: 24px;
+            height: 24px;
+          }
+        }
+      }
+    }
+
+    .w3-sidebar {
+      display: block;
+      width: 70%;
+
+      button {
+        border: none;
+        z-index: 2;
+        border-bottom: 2px solid $bg-color;
+        color: $white;
+        font-size: 14px;
+        background-color: $bg-color;
+        margin-right: 2%;
+
+        &:active,
+        &:focus {
+          color: $yellow;
+          outline: none;
+          border-bottom: 2px solid $yellow;
+        }
+      }
+
+      .home {
+        width: 70px;
+        position: relative;
+        top: 4%;
+        left: 8%;
+        color: #707070;
+        font-size: 17px;
+
+        &:active,
+        &:hover {
+          color: black;
+          border: none;
+        }
+      }
+
+      .favourite {
+        width: 70px;
+        position: relative;
+        top: 11%;
+        left: -19.5%;
+        color: #707070;
+        font-size: 17px;
+
+        &:active,
+        &:hover {
+          color: black;
+          border: none;
+        }
+      }
+
+      .recent {
+        width: 158px;
+        position: relative;
+        top: 14%;
+        left: 3%;
+        color: #707070;
+        font-size: 17px;
+
+        &:active,
+        &:hover {
+          color: black;
+          border: none;
+        }
+      }
+    }
+
+    #searchBar {
+      display: block;
+      width: 100%;
+      left: 0;
+      top: 0%;
+
+      .arrow {
+        width: 25px;
+        position: relative;
+        top: 3%;
+        left: 5%;
+        z-index: 2;
+      }
+
+      input {
+        position: relative;
+        width: 66%;
+        top: 4%;
+        left: 7%;
+        height: 40px;
+        border: none;
+        border-style: none;
+      }
+
+      .cancelSearch {
+        position: relative;
+        left: 8%;
+        top: 3%;
+      }
+    }
+
+    .title {
+      display: none;
+    }
+
+    .lineBar {
+      display: none;
+    }
+  }
+}
