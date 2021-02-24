@@ -4,7 +4,7 @@ import { DatePipe } from '@angular/common';
 import { StorageServiceService } from './../../service/storage-service.service';
 import { Recent } from '../../interface/recent';
 import { WeatherserviceService } from './../../service/weatherservice.service';
-import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Weather } from 'src/app/interface/weather';
 
 @Component({
@@ -80,71 +80,44 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     const url = this.router.url.split('/').pop();
-    console.log('url', url);
     if (url !== 'home') {
       if (url !== undefined) {
-      // const name = this.storageService.getSearchHistory();
-      const name = JSON.parse(localStorage.getItem('SearchHistory') || 'null');
-      console.log(name);
-      this.recentCityName = url;
-      for (let i = 0; i < name.length; i++) {
-        if (this.recentCityName === name[i].location) {
-          console.log('recent', this.recentCityName);
-          this.service.getWeatherInfo(this.recentCityName).subscribe(response => {
-            console.log(response);
-            // this.weatherResponse = response;
-        //     const resp = this.storageService.getFavourites();
-        //     console.log(resp);
-        //     console.log(this.weatherResponse.location);
-        //     for (let i = 0; i < resp.length; i++) {
-        //   if (this.weatherResponse.location === resp[i].location) {
-        //     console.log(resp[i].location);
-        //     console.log('added to fav');
-        //     this.isFavourite = true;
-        //     this.color = '#FAD05B';
-        //   }
-        //   else {
-        //     this.isFavourite = false;
-        //     this.color = '#fff';
-        //   }
-        // }
-            this.cityId = response.id;
-            this.description = response.weather[0].description;
-            this.icon = 'http://openweathermap.org/img/w/' + response.weather[0].icon + '.png';
-            console.log(this.icon);
-            this.country = response.sys.country;
-            this.humidity = response.main.humidity;
-            this.location = response.name;
-            this.tempMax = Math.trunc(response.main.temp_max - 273.15);
-            this.tempMin = Math.trunc(response.main.temp_min - 273.15);
-            this.temperature = Math.trunc(response.main.temp - 273.15);
-            this.visibility = response.visibility;
-            this.wind = response.wind.speed;
-          });
+        const name = JSON.parse(localStorage.getItem('SearchHistory') || 'null');
+        this.recentCityName = url;
+        for (let i = 0; i < name.length; i++) {
+          if (this.recentCityName === name[i].location) {
+            this.service.getWeatherInfo(this.recentCityName).subscribe(response => {
+              this.cityId = response.id;
+              this.description = response.weather[0].description;
+              this.icon = 'http://openweathermap.org/img/w/' + response.weather[0].icon + '.png';
+              this.country = response.sys.country;
+              this.humidity = response.main.humidity;
+              this.location = response.name;
+              this.tempMax = Math.trunc(response.main.temp_max - 273.15);
+              this.tempMin = Math.trunc(response.main.temp_min - 273.15);
+              this.temperature = Math.trunc(response.main.temp - 273.15);
+              this.visibility = response.visibility;
+              this.wind = response.wind.speed;
+            });
+          }
         }
       }
     }
-    }
-    // console.log(this.storageService.getCurrentCity());
     if (url === 'home') {
       this.weatherResponse = (this.storageService.getCurrentCity());
-      console.log(this.weatherResponse);
       if (this.weatherResponse === undefined) {
-        this.service.getWeatherInfo('mysuru').subscribe(response => {
-          console.log(response);
-          this.weatherResponse = response;
-          this.cityId = this.weatherResponse.id;
-          this.description = this.weatherResponse.weather[0].description;
+        this.service.getWeatherInfo('Mysuru').subscribe(response => {
+          this.cityId = response.id;
+          this.description = response.weather[0].description;
           this.icon = 'http://openweathermap.org/img/w/' + response.weather[0].icon + '.png';
-          console.log(this.icon);
-          this.country = this.weatherResponse.sys.country;
-          this.humidity = this.weatherResponse.main.humidity;
-          this.location = this.weatherResponse.name;
-          this.tempMax = Math.trunc(this.weatherResponse.main.temp_max - 273.15);
-          this.tempMin = Math.trunc(this.weatherResponse.main.temp_min - 273.15);
-          this.temperature = Math.trunc(this.weatherResponse.main.temp - 273.15);
-          this.visibility = this.weatherResponse.visibility;
-          this.wind = this.weatherResponse.wind.speed;
+          this.country = response.sys.country;
+          this.humidity = response.main.humidity;
+          this.location = response.name;
+          this.tempMax = Math.trunc(response.main.temp_max - 273.15);
+          this.tempMin = Math.trunc(response.main.temp_min - 273.15);
+          this.temperature = Math.trunc(response.main.temp - 273.15);
+          this.visibility = response.visibility;
+          this.wind = response.wind.speed;
           this.APIResponse = {
             cityId: response.id, location: response.name,
             description: response.weather[0].description,
@@ -159,21 +132,12 @@ export class HomeComponent implements OnInit {
             country: response.sys.country,
             isFavourite: false,
           };
-          // console.log(this.APIResponse);
-          this.storageService.saveImage(this.icon, environment.image);
-          // this.storageService.apiResponse.push(this.APIResponse);
-          // this.storageService.saveResponse(this.APIResponse);
-          // this.storageService.saveResponse(this.weatherResponse);
         });
       }
       if (this.weatherResponse !== undefined) {
         const resp = this.storageService.getFavourites();
-        console.log(resp);
-        console.log(this.weatherResponse.location);
         for (let i = 0; i < resp.length; i++) {
           if (this.weatherResponse.location === resp[i].location) {
-            console.log(resp[i].location);
-            console.log('added to fav');
             this.isFavourite = true;
             this.color = '#FAD05B';
           }
@@ -184,8 +148,7 @@ export class HomeComponent implements OnInit {
         }
         this.cityId = this.weatherResponse.cityId;
         this.description = this.weatherResponse.description;
-        this.icon = 'http://openweathermap.org/img/w/' + this.weatherResponse.icon + '.png';
-        console.log(this.icon);
+        this.icon =  this.weatherResponse.icon;
         this.country = this.weatherResponse.country;
         this.humidity = this.weatherResponse.humidity;
         this.location = this.weatherResponse.location;
@@ -196,6 +159,9 @@ export class HomeComponent implements OnInit {
         this.wind = this.weatherResponse.wind;
       }
     }
+    if (this.storageService.convertTofahrenite === true) {
+      this.convertTofahrenite();
+    }
   }
 
   displayCity(city: string): void {
@@ -204,8 +170,6 @@ export class HomeComponent implements OnInit {
       const resp = this.storageService.getFavourites();
       for (let i = 0; i < resp.length; i++) {
         if (response.name === resp[i].location) {
-          console.log(resp[i].location);
-          console.log('added to fav');
           this.isFavourite = true;
           this.color = '#FAD05B';
         }
@@ -219,7 +183,6 @@ export class HomeComponent implements OnInit {
       this.description = response.weather[0].description;
       this.temperature = Math.floor(response.main.temp - 273.15);
       this.temperatureFahrenite = Math.trunc(((response.main.temp - 273.15) * 9 / 5) + 32);
-      console.log(this.temperatureFahrenite);
       this.tempMin = Math.floor(response.main.temp_min - 273.15);
       this.tempMax = Math.floor(response.main.temp_max - 273.15);
       this.icon = 'http://openweathermap.org/img/w/' + response.weather[0].icon + '.png',
@@ -227,9 +190,7 @@ export class HomeComponent implements OnInit {
       this.wind = response.wind.speed;
       this.visibility = response.visibility;
       this.country = response.sys.country;
-      console.log(this.icon);
     });
-    this.storageService.saveImage(this.icon, environment.image);
   }
 
   onFavouriteAdd(): void {
@@ -246,8 +207,6 @@ export class HomeComponent implements OnInit {
       this.storageService.isFavourite = true;
       this.favouriteList.push(this.favourite);
       this.storageService.saveFavourites(this.favourite);
-      console.log(this.favourite);
-      console.log(this.favouriteList);
     }
   }
 
@@ -255,15 +214,8 @@ export class HomeComponent implements OnInit {
     if (this.isFavourite === true) {
       this.isFavourite = false;
       this.color = '#ffffff';
-      console.log(this.favourite.location);
       this.storageService.isFavourite = false;
       this.storageService.removeCurrentFavourite(this.favourite.location);
-      // const index = this.favouriteList.findIndex(item => item.location === this.favourite.location);
-      // this.favouriteList.splice(index, 1);
-      // const index = this.favourite(item => item.location === data.location);
-      // this.favourites.splice(index, 1);
-      // this.storageService.removeFavourite(findLocation);
-      console.log(this.favouriteList);
     }
   }
 
@@ -289,14 +241,7 @@ export class HomeComponent implements OnInit {
     this.storageService.convertTofahrenite = true;
   }
 
-  toCelsius(data: number): number {
-    return (data - 32) * 5 / 9;
-  }
-
-  toFahreneit(data: number): number {
-    return (data * 9 / 5) + 32;
-  }
-
+  // delete
   getIcon(type: string): string {
     let iconName = '';
     switch (type) {
@@ -335,6 +280,7 @@ export class HomeComponent implements OnInit {
     return iconPath;
   }
 
+
   sideBarOpen(): void {
     const sideBar = document.getElementById('mySidebar');
     sideBar?.setAttribute('style', 'display: block');
@@ -345,7 +291,6 @@ export class HomeComponent implements OnInit {
   }
 
   openSearch(): void {
-    console.log('working');
     const search = document.getElementById('searchBar');
     search?.setAttribute('style', 'display: block');
   }
@@ -353,4 +298,6 @@ export class HomeComponent implements OnInit {
   closeSearchBar(): void {
     document.getElementById('searchBar')?.setAttribute('style', 'display: none');
   }
+
+
 }

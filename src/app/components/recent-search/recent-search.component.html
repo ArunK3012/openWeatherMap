@@ -18,7 +18,7 @@
                     You recently searched for
                     <button type="button" (click)="clearAll()">Clear All</button>
                 </p>
-                <div class="search" *ngFor="let recent of recentSearch">
+                <div class="search" *ngFor="let recent of recentSearch; let i= index">
                     <a routerLink="/home/{{recent.location}}">
                     <h6>{{recent.location}}, {{recent.country}}</h6>
                 </a>
@@ -30,8 +30,8 @@
                         <p class="condition">{{recent.description | titlecase}}</p>
                     </div>
                     <span>
-                        <i (click)="onFavouriteAdd(recent.cityId)" class="icon-heart-empty" *ngIf="!favouriteAdded(recent.cityId)"></i>
-                        <i (click)="removeFavourite(recent.cityId)" class="fa fa-heart" *ngIf="favouriteAdded(recent.cityId)" [style.color] = "this.color"></i>
+                        <i (click)="onFavouriteAdd(recent)" class="icon-heart-empty" *ngIf="!favouriteAdded(i)"></i>
+                        <i (click)="removeFavourite(recent)" class="fa fa-heart" *ngIf="favouriteAdded(i)" [style.color] = "this.color"></i>
                     </span>
                 </div>
             </div>

@@ -34,17 +34,13 @@
             <img (click)="closeSearchBar()" class="cancelSearch" src="../../../assets/clear_search.png" alt="">
         </div>
         <div class="title">
-            <a routerLink="/home">
-            <button class="home">HOME</button>
-            </a>
-            <a routerLink="/favourite">
-                <button  class="favourite">FAVOURITE</button></a>
-            <a routerLink="/recentSearch">
-                <button class="recent">RECENT SEARCH</button></a>
-            <p class="date">{{myDate | date: 'EEE, dd MMM yyyy &nbsp;&nbsp; hh:mm aaa' }}</p>
+            <button routerLink="/home" routerLinkActive="active" class="home" >HOME</button>
+            <button routerLink="/favourite" routerLinkActive="active" class="favourite">FAVOURITE</button>
+            <button routerLink="/recentSearch" routerLinkActive="active" class="recent">RECENT SEARCH</button>
+            <p class="date">{{myDate | date: 'EEE, dd MMM yyyy &nbsp;&nbsp; hh:mm aaa'}}</p>
         </div>
         <div class="w3-sidebar w3-bar-block w3-border-right" id="mySidebar">
-            <button routerLink="/home" (click)="sideBarClose()" class="home">Home</button>
+            <button routerLink="/home"  (click)="sideBarClose()" class="home">Home</button>
             <button routerLink="/favourite" (click)="sideBarClose()" class="favourite">Favourite</button>
             <button routerLink="/recentSearch" (click)="sideBarClose()" class="recent">Recent Search</button>
         </div>

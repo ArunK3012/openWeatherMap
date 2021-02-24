@@ -14,6 +14,7 @@ export class FavouriteComponent implements OnInit {
   favourites = 'false';
   favouriteList: Recent[] = [];
   favouriteLength = 0;
+  degree = true;
 
   constructor(private service: WeatherserviceService,
               private storageService: StorageServiceService) { }
@@ -21,7 +22,9 @@ export class FavouriteComponent implements OnInit {
   ngOnInit(): void {
     this.favouriteLength = this.storageService.favourites.length;
     this.favouriteList = this.storageService.getFavourites();
-    console.log(this.favouriteList);
+    if (this.storageService.convertTofahrenite === true) {
+      this.degree = false;
+    }
   }
 
   displayCity(city: string) {
@@ -77,7 +80,6 @@ export class FavouriteComponent implements OnInit {
   }
 
   openSearch(): void {
-    console.log('working');
     const search = document.getElementById('searchBar');
     search?.setAttribute('style', 'display: block');
   }

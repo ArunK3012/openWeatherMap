@@ -27,7 +27,8 @@
                     <div class="temperature">
                         <!-- <img [src]="getIcon(favourite.description)" alt=""> -->
                         <img [src]="favourite.icon" alt="">
-                        <p>{{favourite.temperature}} <span>&#176;C</span> </p>
+                        <p *ngIf="degree">{{favourite.temperature}} <span>&#176;C</span> </p>
+                        <p *ngIf="!degree">{{favourite.tempFahrenite}} <span>&#176;F</span> </p>
                         <p class="condition">{{favourite.description | titlecase}}</p>
                     </div>
                     <img class="image" (click)="removeFavourite(favourite.location)"

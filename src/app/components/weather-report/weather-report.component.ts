@@ -48,10 +48,8 @@ export class WeatherReportComponent implements OnInit {
 
   ngOnInit(): void {
     const url = this.route.url.split('/').pop();
-    console.log(url);
 
     if (url === 'favourite') {
-      console.log('fav');
       this.homeActive = false;
       this.favouritesActive = true;
       this.recentActive = false;
@@ -65,9 +63,7 @@ export class WeatherReportComponent implements OnInit {
 
   onSearch() {
     this.cityNames.emit(this.searchCityWeather);
-    console.log('weather');
     this.service.getWeatherInfo(this.searchCityWeather).subscribe(response => {
-      console.log(response);
       this.APIResponse = {
        cityId: response.id, location: response.name,
        description: response.weather[0].description,
@@ -82,16 +78,13 @@ export class WeatherReportComponent implements OnInit {
        country: response.sys.country,
        isFavourite: false,
       };
-      // this.storageservice.saveImage(icon, environment.images);
       this.storageservice.searchResponse.push(this.APIResponse);
-      console.log(this.storageservice.searchResponse);
       this.storageservice.saveResponse(this.APIResponse);
       localStorage.setItem('APIRESPONSE', JSON.stringify(this.APIResponse));
     });
   }
 
   openSearch(): void {
-    console.log('working');
     const search = document.getElementById('searchBar');
     search?.setAttribute('style', 'display: block');
   }

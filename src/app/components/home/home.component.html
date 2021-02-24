@@ -5,7 +5,7 @@
         <div class="row">
             <div class="header-body">
                 <div class="displayDate">
-                    <p class="date">{{myDate | date: 'EEE, dd MMM yyyy &nbsp;&nbsp; hh:mm aaa' }}</p>
+                    <p class="date">{{myDate | date: 'EEE, dd MMM yyyy &nbsp;&nbsp; hh:mm aaa' | uppercase}}</p>
                 </div>
                 <div class="country">
                     <h5 class="location">
@@ -24,9 +24,7 @@
                         </button>
                 </div>
                 <div class="sunny">
-                    <!-- <img [src]="getIcon(description)" alt=""> -->
                     <img [src]="icon" alt="">
-                    <!-- <img [src]="thumbnail" alt=""> -->
                     <p> {{temperature}}
                         <button (click)="convertToDegree()" [style.background-color]="this.backgroundColor"
                             [disabled]="temperature<50" id="degree" class="degree"><span>&#176;</span>C</button>

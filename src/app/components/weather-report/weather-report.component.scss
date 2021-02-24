@@ -24,7 +24,7 @@
       }
 
       img {
-        width: 135px;
+        width: 140px;
         height: 30px;
         margin-top: 4%;
         margin-left: 8%;
@@ -32,7 +32,7 @@
 
       .form-outline {
         position: relative;
-        margin-left: 34%;
+        margin-left: 33%;
         margin-top: 3%;
 
         .searchIcon {
@@ -40,26 +40,19 @@
         }
 
         input {
-          background-color: rgba(255, 255, 255, 0.3);
+          background-color: rgba(255, 255, 255, 0.2);
           border-radius: 3px;
           color: white;
           border: 1px solid;
           width: 400px;
           height: 40px;
           border: 1px solid;
-          border-color: rgba(255, 255, 255, 0.6);
-          // opacity: 30%;
+          border-color: rgba(255, 255, 255, 0.5);
         }
 
-        :-ms-input-placeholder,
         input::placeholder {
           color: $white;
-          line-height: 19px;
-          opacity: 0.8;
-          // z-index: 10;
-          font-weight: 500;
-          color: white;
-
+          opacity: 80%;
         }
 
         .form-label {
@@ -96,12 +89,13 @@
       background-color: $bg-color;
       margin-right: 2%;
 
-      &:active,
-      &:focus,
-      &:visited {
-        color: $yellow;
+      &:focus{
         outline: none;
-        border-bottom: 2px solid $yellow;
+      }
+
+      &.active {
+        border-bottom: solid 2px $yellow;
+        color: #FFD639;
       }
     }
 
@@ -121,7 +115,7 @@
       position: relative;
       top: -24px;
       color: $white;
-      margin-left: 66%;
+      margin-left: 65%;
     }
   }
 

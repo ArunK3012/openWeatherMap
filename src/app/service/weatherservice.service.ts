@@ -24,30 +24,11 @@ export class WeatherserviceService {
     const url = `${this.baseUrl}q=${cityName}&appid=${this.APIKey}`;
     const fromCache = this.responseCache.get(url);
     if (fromCache) {
-      console.log('from Storage');
       return of(fromCache);
     }
     const resp = this.http.get(url);
     resp.subscribe(city => this.responseCache.set(url, city));
     return resp;
-    // return this.http.get<any>(url).pipe(
-    //   map((res) => {
-    //     return {
-    //       city: res.name,
-    //       country: res.sys.country,
-    //       main: res.main,
-    //       clouds: res.clouds.all,
-    //       wind: res.wind.speed,
-    //       visibility: res.visibility,
-    //       precipitation: res.precipitation?.value || 0,
-    //       condition: res.weather[0].main,
-    //       condition_desc: res.weather[0].description
-    //   };
-    //   }),
-    //   tap(res => {
-    //     return this.dataChanged.next(res);
-    //   })
-    // );
    }
 
 }
