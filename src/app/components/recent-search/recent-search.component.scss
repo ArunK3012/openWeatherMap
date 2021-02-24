@@ -4,7 +4,7 @@
 
   .row {
 
-    .header-favourite{
+    .header-favourite {
       display: none;
     }
 
@@ -69,12 +69,27 @@
           margin-top: -8px;
           top: -23px;
 
+          a:focus,
+          a:hover {
+            outline: none;
+            text-decoration: none;
+
+            h6 {
+              color: $yellow;
+            }
+          }
+
           &:focus {
             outline: none;
             background-color: rgba(255, 255, 255, 0.2);
 
             h6 {
               color: $yellow;
+            }
+
+            span{
+              text-decoration: none;
+              color: white;
             }
           }
 
@@ -93,11 +108,11 @@
             top: -6%;
 
             img {
-              width: 36px;
-              height: 38px;
+              width: 39px;
+              height: 28px;
               position: relative;
-              top: -9px;
-              left: 22%;
+              top: -1px;
+              left: 21%;
             }
 
             p {
@@ -123,7 +138,7 @@
               width: 200px;
               position: relative;
               margin-left: 40%;
-              top: -36px;
+              top: -25px;
             }
           }
 
@@ -207,11 +222,11 @@
           position: relative;
           top: 24%;
 
-          img{
-          position: relative;
-          top: 24%;
-          left: -9%;
-        }
+          img {
+            position: relative;
+            top: 24%;
+            left: -9%;
+          }
 
           p {
             width: 100%;
@@ -283,24 +298,24 @@
               }
             }
 
-            span{
+            span {
 
-            .icon-heart-empty {
-              margin: 0;
-              left: -73%;
-              top: -66%;
-              width: 24px;
-              height: 22px;
-            }
+              .icon-heart-empty {
+                margin: 0;
+                left: -73%;
+                top: -66%;
+                width: 24px;
+                height: 22px;
+              }
 
-            .fa {
-              margin: 0;
-              left: -73%;
-              top: -66%;
-              width: 24px;
-              height: 22px;
+              .fa {
+                margin: 0;
+                left: -73%;
+                top: -66%;
+                width: 24px;
+                height: 22px;
+              }
             }
-          }
           }
         }
       }

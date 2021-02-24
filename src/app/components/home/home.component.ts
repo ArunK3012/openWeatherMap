@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { environment } from './../../../environments/environment.prod';
 import { DatePipe } from '@angular/common';
 import { StorageServiceService } from './../../service/storage-service.service';
 import { Recent } from '../../interface/recent';
@@ -29,6 +31,7 @@ export class HomeComponent implements OnInit {
   humidity = '';
   cityId: any;
   cityName: any;
+  icon: any;
   description = '';
   country: any;
   recentList: Recent[] = [];
@@ -40,13 +43,15 @@ export class HomeComponent implements OnInit {
     location: '',
     description: '',
     temperature: 0,
+    tempFahrenite: 0,
     tempMin: 0,
     tempMax: 0,
+    icon: '',
     humidity: '',
     wind: '',
     visibility: '',
     country: '',
-    cityId: '',
+    cityId: 0,
     isFavourite: false,
   };
   weatherResponse: any;
@@ -55,111 +60,176 @@ export class HomeComponent implements OnInit {
     temperature: 0,
     description: '',
     country: '',
-    addFavoruite: false,
+    tempFahrenite: 0,
+    addFavourite: false,
+    icon: '',
+    cityId: 0,
   };
   backgroundColor = '#ffffff';
   bgColor = 'rgba(255, 255, 255, 0)';
+  recentCityName = '';
 
   @Output() cityNames = new EventEmitter<string>();
 
   constructor(private service: WeatherserviceService,
               private storageService: StorageServiceService,
-              private datePipe: DatePipe) {
-                this.datePipe.transform(this.myDate, 'yyyy-MM-dd');
-              }
+              private datePipe: DatePipe,
+              private router: Router) {
+    this.datePipe.transform(this.myDate, 'yyyy-MM-dd');
+  }
 
   ngOnInit(): void {
-    console.log(this.storageService.getCurrentCity());
-    this.weatherResponse = (this.storageService.getCurrentCity());
-    if (this.weatherResponse === undefined) {
-      this.service.getWeatherInfo('mysuru').subscribe(response => {
-        console.log(response);
-        this.weatherResponse = response;
-        this.cityId = this.weatherResponse.id;
-        this.description = this.weatherResponse.weather[0].description;
-        this.country = this.weatherResponse.sys.country;
-        this.humidity = this.weatherResponse.main.humidity;
-        this.location = this.weatherResponse.name;
-        this.tempMax = Math.trunc(this.weatherResponse.main.temp_max - 273.15);
-        this.tempMin = Math.trunc(this.weatherResponse.main.temp_min - 273.15);
-        this.temperature = Math.trunc(this.weatherResponse.main.temp - 273.15);
+    const url = this.router.url.split('/').pop();
+    console.log('url', url);
+    if (url !== 'home') {
+      if (url !== undefined) {
+      // const name = this.storageService.getSearchHistory();
+      const name = JSON.parse(localStorage.getItem('SearchHistory') || 'null');
+      console.log(name);
+      this.recentCityName = url;
+      for (let i = 0; i < name.length; i++) {
+        if (this.recentCityName === name[i].location) {
+          console.log('recent', this.recentCityName);
+          this.service.getWeatherInfo(this.recentCityName).subscribe(response => {
+            console.log(response);
+            // this.weatherResponse = response;
+        //     const resp = this.storageService.getFavourites();
+        //     console.log(resp);
+        //     console.log(this.weatherResponse.location);
+        //     for (let i = 0; i < resp.length; i++) {
+        //   if (this.weatherResponse.location === resp[i].location) {
+        //     console.log(resp[i].location);
+        //     console.log('added to fav');
+        //     this.isFavourite = true;
+        //     this.color = '#FAD05B';
+        //   }
+        //   else {
+        //     this.isFavourite = false;
+        //     this.color = '#fff';
+        //   }
+        // }
+            this.cityId = response.id;
+            this.description = response.weather[0].description;
+            this.icon = 'http://openweathermap.org/img/w/' + response.weather[0].icon + '.png';
+            console.log(this.icon);
+            this.country = response.sys.country;
+            this.humidity = response.main.humidity;
+            this.location = response.name;
+            this.tempMax = Math.trunc(response.main.temp_max - 273.15);
+            this.tempMin = Math.trunc(response.main.temp_min - 273.15);
+            this.temperature = Math.trunc(response.main.temp - 273.15);
+            this.visibility = response.visibility;
+            this.wind = response.wind.speed;
+          });
+        }
+      }
+    }
+    }
+    // console.log(this.storageService.getCurrentCity());
+    if (url === 'home') {
+      this.weatherResponse = (this.storageService.getCurrentCity());
+      console.log(this.weatherResponse);
+      if (this.weatherResponse === undefined) {
+        this.service.getWeatherInfo('mysuru').subscribe(response => {
+          console.log(response);
+          this.weatherResponse = response;
+          this.cityId = this.weatherResponse.id;
+          this.description = this.weatherResponse.weather[0].description;
+          this.icon = 'http://openweathermap.org/img/w/' + response.weather[0].icon + '.png';
+          console.log(this.icon);
+          this.country = this.weatherResponse.sys.country;
+          this.humidity = this.weatherResponse.main.humidity;
+          this.location = this.weatherResponse.name;
+          this.tempMax = Math.trunc(this.weatherResponse.main.temp_max - 273.15);
+          this.tempMin = Math.trunc(this.weatherResponse.main.temp_min - 273.15);
+          this.temperature = Math.trunc(this.weatherResponse.main.temp - 273.15);
+          this.visibility = this.weatherResponse.visibility;
+          this.wind = this.weatherResponse.wind.speed;
+          this.APIResponse = {
+            cityId: response.id, location: response.name,
+            description: response.weather[0].description,
+            temperature: Math.trunc(response.main.temp - 273.15),
+            tempFahrenite: Math.floor(((response.main.temp - 273.15) * 9 / 5) + 32),
+            tempMin: Math.trunc(response.main.temp_min - 273.15),
+            tempMax: Math.trunc(response.main.temp_max - 273.15),
+            icon: 'http://openweathermap.org/img/w/' + response.weather[0].icon + '.png',
+            humidity: response.main.humidity,
+            wind: response.wind.speed,
+            visibility: response.visibility,
+            country: response.sys.country,
+            isFavourite: false,
+          };
+          // console.log(this.APIResponse);
+          this.storageService.saveImage(this.icon, environment.image);
+          // this.storageService.apiResponse.push(this.APIResponse);
+          // this.storageService.saveResponse(this.APIResponse);
+          // this.storageService.saveResponse(this.weatherResponse);
+        });
+      }
+      if (this.weatherResponse !== undefined) {
+        const resp = this.storageService.getFavourites();
+        console.log(resp);
+        console.log(this.weatherResponse.location);
+        for (let i = 0; i < resp.length; i++) {
+          if (this.weatherResponse.location === resp[i].location) {
+            console.log(resp[i].location);
+            console.log('added to fav');
+            this.isFavourite = true;
+            this.color = '#FAD05B';
+          }
+          else {
+            this.isFavourite = false;
+            this.color = '#fff';
+          }
+        }
+        this.cityId = this.weatherResponse.cityId;
+        this.description = this.weatherResponse.description;
+        this.icon = 'http://openweathermap.org/img/w/' + this.weatherResponse.icon + '.png';
+        console.log(this.icon);
+        this.country = this.weatherResponse.country;
+        this.humidity = this.weatherResponse.humidity;
+        this.location = this.weatherResponse.location;
+        this.tempMax = this.weatherResponse.tempMax;
+        this.tempMin = this.weatherResponse.tempMin;
+        this.temperature = this.weatherResponse.temperature;
         this.visibility = this.weatherResponse.visibility;
-        this.wind = this.weatherResponse.wind.speed;
-        this.APIResponse = {
-          cityId: response.id, location: response.name,
-          description: response.weather[0].description,
-          temperature: Math.trunc(response.main.temp - 273.15),
-          tempMin: Math.trunc(response.main.temp_min - 273.15),
-          tempMax: Math.trunc(response.main.temp_max - 273.15),
-          humidity: response.main.humidity,
-          wind: response.wind.speed,
-          visibility: response.visibility,
-          country: response.sys.country,
-          isFavourite: false,
-         };
-         // console.log(this.APIResponse);
-        this.storageService.apiResponse.push(this.APIResponse);
-        // this.storageService.saveResponse(this.APIResponse);
-        // this.storageService.saveResponse(this.weatherResponse);
-      });
-    }
-    if (this.weatherResponse !== undefined) {
-      const resp = this.storageService.getFavourites();
-      console.log(resp);
-      console.log(this.weatherResponse.location);
-      for (let i=0; i<resp.length; i++) {
-      if (this.weatherResponse.location === resp[i].location) {
-          console.log(resp[i].location);
-          console.log('added to fav');
-          this.isFavourite = true;
-          this.color = '#FAD05B';
+        this.wind = this.weatherResponse.wind;
       }
-      else {
-      this.isFavourite = false;
-      this.color = '#fff';
-      }
-    }
-      this.cityId = this.weatherResponse.cityId;
-      this.description = this.weatherResponse.description;
-      this.country = this.weatherResponse.country;
-      this.humidity = this.weatherResponse.humidity;
-      this.location = this.weatherResponse.location;
-      this.tempMax = this.weatherResponse.tempMax;
-      this.tempMin = this.weatherResponse.tempMin;
-      this.temperature = this.weatherResponse.temperature;
-      this.visibility = this.weatherResponse.visibility;
-      this.wind = this.weatherResponse.wind;
     }
   }
 
-  displayCity(city: string): void{
+  displayCity(city: string): void {
     this.location = city;
     this.service.getWeatherInfo(city).subscribe(response => {
       const resp = this.storageService.getFavourites();
-      for (let i=0; i<resp.length; i++) {
-      if (response.name === resp[i].location) {
+      for (let i = 0; i < resp.length; i++) {
+        if (response.name === resp[i].location) {
           console.log(resp[i].location);
           console.log('added to fav');
           this.isFavourite = true;
           this.color = '#FAD05B';
+        }
+        else {
+          this.isFavourite = false;
+          this.color = '#fff';
+        }
       }
-      else {
-      this.isFavourite = false;
-      this.color = '#fff';
-      }
-    }
       this.cityId = response.id;
       this.location = response.name;
       this.description = response.weather[0].description;
       this.temperature = Math.floor(response.main.temp - 273.15);
-      this.temperatureFahrenite = Math.trunc((this.temperature * 9 / 5) + 32);
+      this.temperatureFahrenite = Math.trunc(((response.main.temp - 273.15) * 9 / 5) + 32);
+      console.log(this.temperatureFahrenite);
       this.tempMin = Math.floor(response.main.temp_min - 273.15);
       this.tempMax = Math.floor(response.main.temp_max - 273.15);
-      this.humidity = response.main.humidity;
+      this.icon = 'http://openweathermap.org/img/w/' + response.weather[0].icon + '.png',
+        this.humidity = response.main.humidity;
       this.wind = response.wind.speed;
       this.visibility = response.visibility;
       this.country = response.sys.country;
+      console.log(this.icon);
     });
+    this.storageService.saveImage(this.icon, environment.image);
   }
 
   onFavouriteAdd(): void {
@@ -170,8 +240,10 @@ export class HomeComponent implements OnInit {
       this.color = '#FAD05B';
       this.favourite = {
         location: this.location, temperature: this.temperature, description: this.description,
-        country: this.country, addFavoruite: true,
+        country: this.country, addFavourite: true, tempFahrenite: this.temperatureFahrenite,
+        icon: this.icon, cityId: this.cityId,
       };
+      this.storageService.isFavourite = true;
       this.favouriteList.push(this.favourite);
       this.storageService.saveFavourites(this.favourite);
       console.log(this.favourite);
@@ -184,6 +256,7 @@ export class HomeComponent implements OnInit {
       this.isFavourite = false;
       this.color = '#ffffff';
       console.log(this.favourite.location);
+      this.storageService.isFavourite = false;
       this.storageService.removeCurrentFavourite(this.favourite.location);
       // const index = this.favouriteList.findIndex(item => item.location === this.favourite.location);
       // this.favouriteList.splice(index, 1);
@@ -202,6 +275,7 @@ export class HomeComponent implements OnInit {
     document.getElementById('degree')?.setAttribute('style', 'color: #E32843');
     this.bgColor = 'rgba(255, 255, 255, 0)';
     document.getElementById('fahrenite')?.setAttribute('style', 'color: white');
+    this.storageService.convertTofahrenite = false;
   }
 
   convertTofahrenite(): void {
@@ -212,6 +286,7 @@ export class HomeComponent implements OnInit {
     document.getElementById('fahrenite')?.setAttribute('style', 'color: #E32843');
     this.backgroundColor = 'rgba(255, 255, 255, 0)';
     document.getElementById('degree')?.setAttribute('style', 'color: white');
+    this.storageService.convertTofahrenite = true;
   }
 
   toCelsius(data: number): number {

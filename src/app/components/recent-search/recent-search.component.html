@@ -19,15 +19,19 @@
                     <button type="button" (click)="clearAll()">Clear All</button>
                 </p>
                 <div class="search" *ngFor="let recent of recentSearch">
+                    <a routerLink="/home/{{recent.location}}">
                     <h6>{{recent.location}}, {{recent.country}}</h6>
+                </a>
                     <div class="temperature">
-                        <img [src]="getIcon(recent.description)" alt="">
-                        <p>{{recent.temperature}} <span>&#176;C</span> </p>
+                        <!-- <img [src]="getIcon(recent.description)" alt=""> -->
+                        <img [src]="recent.icon" alt="">
+                        <p *ngIf="degree">{{recent.temperature}} <span>&#176;C</span> </p>
+                        <p *ngIf="!degree">{{recent.tempFahrenite}} <span>&#176;F</span> </p>
                         <p class="condition">{{recent.description | titlecase}}</p>
                     </div>
                     <span>
-                        <i class="icon-heart-empty" *ngIf="!isFavourite"></i>
-                        <i class="fa fa-heart" *ngIf="isFavourite"></i>
+                        <i (click)="onFavouriteAdd(recent.cityId)" class="icon-heart-empty" *ngIf="!favouriteAdded(recent.cityId)"></i>
+                        <i (click)="removeFavourite(recent.cityId)" class="fa fa-heart" *ngIf="favouriteAdded(recent.cityId)" [style.color] = "this.color"></i>
                     </span>
                 </div>
             </div>

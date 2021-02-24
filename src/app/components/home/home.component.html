@@ -24,7 +24,8 @@
                         </button>
                 </div>
                 <div class="sunny">
-                    <img [src]="getIcon(description)" alt="">
+                    <!-- <img [src]="getIcon(description)" alt=""> -->
+                    <img [src]="icon" alt="">
                     <!-- <img [src]="thumbnail" alt=""> -->
                     <p> {{temperature}}
                         <button (click)="convertToDegree()" [style.background-color]="this.backgroundColor"

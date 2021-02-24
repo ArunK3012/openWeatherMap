@@ -21,6 +21,7 @@ export class FavouriteComponent implements OnInit {
   ngOnInit(): void {
     this.favouriteLength = this.storageService.favourites.length;
     this.favouriteList = this.storageService.getFavourites();
+    console.log(this.favouriteList);
   }
 
   displayCity(city: string) {

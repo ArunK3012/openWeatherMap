@@ -1,3 +1,4 @@
+import { environment } from './../../../environments/environment.prod';
 import { Weather } from '../../interface/weather';
 import { StorageServiceService } from './../../service/storage-service.service';
 import { WeatherserviceService } from './../../service/weatherservice.service';
@@ -22,16 +23,21 @@ export class WeatherReportComponent implements OnInit {
     location: '',
     description: '',
     temperature: 0,
+    tempFahrenite: 0,
     tempMin: 0,
     tempMax: 0,
     humidity: '',
     wind: '',
+    icon: '',
     visibility: '',
     country: '',
-    cityId: '',
+    cityId: 0,
     isFavourite: false,
   };
   myDate = new Date();
+  favouritesActive = false;
+  homeActive = true;
+  recentActive = false;
 
   constructor(private service: WeatherserviceService,
               private route: Router,
@@ -41,6 +47,20 @@ export class WeatherReportComponent implements OnInit {
               }
 
   ngOnInit(): void {
+    const url = this.route.url.split('/').pop();
+    console.log(url);
+
+    if (url === 'favourite') {
+      console.log('fav');
+      this.homeActive = false;
+      this.favouritesActive = true;
+      this.recentActive = false;
+    }
+    if (url === 'recentSearch') {
+      this.homeActive = false;
+      this.favouritesActive = false;
+      this.recentActive = true;
+    }
   }
 
   onSearch() {
@@ -52,17 +72,20 @@ export class WeatherReportComponent implements OnInit {
        cityId: response.id, location: response.name,
        description: response.weather[0].description,
        temperature: Math.trunc(response.main.temp - 273.15),
+       tempFahrenite: Math.floor(((response.main.temp - 273.15) * 9 / 5) + 32),
        tempMin: Math.trunc(response.main.temp_min - 273.15),
        tempMax: Math.trunc(response.main.temp_max - 273.15),
+       icon: 'http://openweathermap.org/img/w/' + response.weather[0].icon + '.png',
        humidity: response.main.humidity,
        wind: response.wind.speed,
        visibility: response.visibility,
        country: response.sys.country,
        isFavourite: false,
       };
-      // console.log(this.APIResponse);
+      // this.storageservice.saveImage(icon, environment.images);
+      this.storageservice.searchResponse.push(this.APIResponse);
+      console.log(this.storageservice.searchResponse);
       this.storageservice.saveResponse(this.APIResponse);
-      // console.log(JSON.stringify(this.APIResponse));
       localStorage.setItem('APIRESPONSE', JSON.stringify(this.APIResponse));
     });
   }

@@ -14,20 +14,33 @@
                 </div>
             </div>
         </div>
+        <div *ngIf="favouritesActive" class="header-favourite">
+            <a routerLink="/home">
+                <img class="arrow" src="../../../assets/left-arrow.png" alt=""></a>
+            <p>Favourites</p>
+            <img (click)="openSearch()" class="blackSearch" src="../../../assets/black_search.png" alt="">
+        </div>
+        <div *ngIf="recentActive" class="header-favourite">
+            <a routerLink="/home">
+                <img class="arrow" src="../../../assets/left-arrow.png" alt=""></a>
+            <p>Recent Search</p>
+            <img (click)="openSearch()" class="blackSearch" src="../../../assets/black_search.png" alt="">
+        </div>
         <div class="w3-sidebar w3-bar-block w3-border-left" style="display:none" id="searchBar">
             <a href="/home">
                 <img class="arrow" src="../../../assets/left-arrow.png" alt=""></a>
             <input type="search" id="search" name="search" class="form-control" [(ngModel)]="searchCityWeather"
                 placeholder="Search city" (keyup.enter)="onSearch()" (keyup.enter)="closeAndRedirect()" />
-                <img (click)="closeSearchBar()" class="cancelSearch" src="../../../assets/clear_search.png" alt="">
+            <img (click)="closeSearchBar()" class="cancelSearch" src="../../../assets/clear_search.png" alt="">
         </div>
         <div class="title">
             <a routerLink="/home">
-            <button class="home">HOME</button></a>
+            <button class="home">HOME</button>
+            </a>
             <a routerLink="/favourite">
-            <button class="favourite">FAVOURITE</button></a>
+                <button  class="favourite">FAVOURITE</button></a>
             <a routerLink="/recentSearch">
-            <button class="recent">RECENT SEARCH</button></a>
+                <button class="recent">RECENT SEARCH</button></a>
             <p class="date">{{myDate | date: 'EEE, dd MMM yyyy &nbsp;&nbsp; hh:mm aaa' }}</p>
         </div>
         <div class="w3-sidebar w3-bar-block w3-border-right" id="mySidebar">

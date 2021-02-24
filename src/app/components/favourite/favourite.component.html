@@ -25,7 +25,8 @@
                 <div class="favourite" *ngFor="let favourite of favouriteList">
                     <h6>{{favourite.location}}, {{favourite.country}}</h6>
                     <div class="temperature">
-                        <img [src]="getIcon(favourite.description)" alt="">
+                        <!-- <img [src]="getIcon(favourite.description)" alt=""> -->
+                        <img [src]="favourite.icon" alt="">
                         <p>{{favourite.temperature}} <span>&#176;C</span> </p>
                         <p class="condition">{{favourite.description | titlecase}}</p>
                     </div>

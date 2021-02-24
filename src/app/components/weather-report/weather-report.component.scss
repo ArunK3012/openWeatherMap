@@ -6,6 +6,10 @@
   background-image: url('../../../assets/background.png');
   font-family: 'Roboto', sans-serif;
 
+  .header-favourite {
+    display: none;
+  }
+
   .header {
     height: 110px;
 
@@ -36,15 +40,15 @@
         }
 
         input {
-          background-color: rgba(255, 255, 255, 0.6);
+          background-color: rgba(255, 255, 255, 0.3);
           border-radius: 3px;
           color: white;
           border: 1px solid;
           width: 400px;
           height: 40px;
           border: 1px solid;
-          border-color: $white;
-          opacity: 30%;
+          border-color: rgba(255, 255, 255, 0.6);
+          // opacity: 30%;
         }
 
         :-ms-input-placeholder,
@@ -146,6 +150,40 @@
     height: 688px;
     background-image: url('../../../assets/background_android.png');
 
+    .header-favourite {
+      display: block;
+      background-color: #FFFFFF;
+      height: 59px;
+      width: 106.4%;
+      position: relative;
+      left: -3.2%;
+      z-index: 100;
+      top: -70px;
+
+      .arrow {
+        width: 25px;
+        position: relative;
+        top: 27%;
+        left: 8%;
+      }
+
+      p {
+        font-size: 22px;
+        position: relative;
+        top: -21%;
+        margin-left: 24%;
+        color: #292F33;
+        font-weight: 500;
+      }
+
+      .blackSearch {
+        width: 24px;
+        position: relative;
+        top: -98%;
+        left: 88%;
+      }
+    }
+
     .header {
       height: 70px;
       width: 100%;
@@ -197,6 +235,7 @@
     .w3-sidebar {
       display: block;
       width: 70%;
+      z-index: 10;
 
       button {
         border: none;
@@ -266,12 +305,13 @@
       width: 100%;
       left: 0;
       top: 0%;
+      z-index: 200;
 
       .arrow {
         width: 25px;
         position: relative;
         top: 3%;
-        left: 5%;
+        left: 1%;
         z-index: 2;
       }
 
@@ -279,7 +319,7 @@
         position: relative;
         width: 66%;
         top: 4%;
-        left: 7%;
+        left: 4%;
         height: 40px;
         border: none;
         border-style: none;
@@ -287,7 +327,7 @@
 
       .cancelSearch {
         position: relative;
-        left: 8%;
+        left: 7%;
         top: 3%;
       }
     }

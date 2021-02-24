@@ -3,5 +3,8 @@ export interface Recent {
     temperature: number;
     description: string;
     country: string;
-    addFavoruite: boolean;
+    tempFahrenite: number;
+    addFavourite: boolean;
+    icon: string;
+    cityId: number;
 }

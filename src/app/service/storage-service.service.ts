@@ -11,6 +11,9 @@ export class StorageServiceService {
   apiResponse: Weather[] = [];
   displayResponse: Weather[] = [];
   favourites: Recent[] = [];
+  convertTofahrenite = false;
+  isFavourite = false;
+  searchResponse: Weather[] = [];
 
   constructor(private service: WeatherserviceService) { }
 
@@ -49,6 +52,7 @@ export class StorageServiceService {
 
   saveFavourites(data: any): void {
     this.favourites.push(data);
+    console.log(this.favourites);
   }
 
   removeCurrentFavourite(data: any): void {
@@ -56,7 +60,15 @@ export class StorageServiceService {
     this.favourites.splice(index, 1);
   }
 
+  checkFavourites(data: Weather): boolean {
+    if (this.favourites !== undefined) {
+      return this.favourites.findIndex(item => item.cityId === data.cityId) >= 0;
+    }
+    return false;
+  }
+
   getFavourites(): any {
+    console.log(this.favourites);
     return this.favourites;
   }
 
@@ -66,4 +78,27 @@ export class StorageServiceService {
     }
   }
 
+  removeRecentSearch(): any {
+    while (this.apiResponse.length !== 0) {
+      this.apiResponse.pop();
+    }
+  }
+
+  saveImage = (cityId: string, tag: string) => {
+    var arr = this.getSavedCity(tag);
+    // var arr = tag;
+    console.log(cityId);
+    console.log(arr);
+    console.log(tag);
+    if (!arr.includes(cityId)) {
+    arr.push(cityId);
+    console.log(arr);
+    localStorage.setItem('tag', JSON.stringify(arr));
+    }
+  }
+
+  getSavedCity = (tag: string) => {
+    var arr = JSON.parse(localStorage.getItem(tag) || 'null');
+    return arr;
+  }
 }
