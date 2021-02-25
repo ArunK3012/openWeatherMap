@@ -1,16 +1,17 @@
-<div class="search" *ngFor="let recent of data; let i= index">
-    <a routerLink="/home/{{recent.location}}">
-    <h6>{{recent.location}}, {{recent.country}}</h6>
-</a>
-    <div class="temperature">
-        <!-- <img [src]="getIcon(recent.description)" alt=""> -->
-        <img [src]="recent.icon" alt="">
-        <p *ngIf="degree">{{recent.temperature}} <span>&#176;C</span> </p>
-        <p *ngIf="!degree">{{recent.tempFahrenite}} <span>&#176;F</span> </p>
-        <p class="condition">{{recent.description | titlecase}}</p>
+<div class="search-list">
+    <div class="dataList" *ngFor="let list of data; let i= index">
+        <a routerLink="/home/{{list.location}}">
+            <h6>{{list.location}}, {{list.country}}</h6>
+        </a>
+        <div class="temperature">
+            <img [src]="list.icon" alt="">
+            <p *ngIf="degree">{{list.temperature}} <span>&#176;C</span> </p>
+            <p *ngIf="!degree">{{list.tempFahrenite}} <span>&#176;F</span> </p>
+            <p class="condition">{{list.description | titlecase}}</p>
+        </div>
+        <span>
+            <i (click)="onFavouriteAdd(list)" class="icon-heart-empty" *ngIf="!favouriteAdded(i)"></i>
+            <i (click)="removeFavourite(list)" class="fa fa-heart" *ngIf="favouriteAdded(i)"></i>
+        </span>
     </div>
-    <span>
-        <i (click)="onFavouriteAdd(recent)" class="icon-heart-empty" *ngIf="!favouriteAdded(i)"></i>
-        <i (click)="removeFavourite(recent)" class="fa fa-heart" *ngIf="favouriteAdded(i)" [style.color] = "this.color"></i>
-    </span>
 </div>

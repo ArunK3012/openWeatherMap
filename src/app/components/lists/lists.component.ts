@@ -1,6 +1,6 @@
 import { Weather } from './../../interface/weather';
 import { StorageServiceService } from './../../service/storage-service.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-lists',
@@ -10,29 +10,28 @@ import { Component, OnInit } from '@angular/core';
 export class ListsComponent implements OnInit {
 
   degree = true;
-  data: Weather[] = [];
+  recentSearch: Weather[] = [];
+  @Input() data: any;
 
   constructor(private storageService: StorageServiceService) { }
 
   ngOnInit(): void {
+    this.recentSearch = JSON.parse(localStorage.getItem('SearchHistory') || 'null');
     if (this.storageService.convertTofahrenite === true) {
       this.degree = false;
     }
   }
 
-  favouriteAdded(item: Weather): any{
-    // const item = this.recentSearch[index];
+  favouriteAdded(index: number): any{
+    const item = this.recentSearch[index];
     return this.storageService.checkFavourites(item);
   }
 
   onFavouriteAdd(data: Weather): void {
-    // this.location.toUpperCase();
-    // this.color = '#FAD05B';
     this.storageService.saveFavourites(data);
   }
 
   removeFavourite(data: Weather): void {
-      // this.color = '#ffffff';
       this.storageService.removeCurrentFavourite(data.location);
   }
 }

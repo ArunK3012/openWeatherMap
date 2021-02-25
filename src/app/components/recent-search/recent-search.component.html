@@ -1,40 +1,14 @@
 <app-weather-report (cityNames)="displayCity($event)"></app-weather-report>
 
-<div class="container">
-    <div class="row">
-        <div class="header-favourite">
-            <a href="/home">
-              <img class="arrow" src="../../../assets/left-arrow.png" alt=""></a>
-            <p>Recent Search</p>
-            <img (click)="openSearch()" class="blackSearch" src="../../../assets/black_search.png" alt="">
-          </div>
-        <div class="searchHistory">
-            <div *ngIf="recentSearchhistory === 'false'" class="empty">
-                <img src="../../../assets/favourite.png" alt="">
-                <p>No Recent Search </p>
-            </div>
-            <div *ngIf="recentSearchhistory === 'true'" class="recentSearch">
-                <p>
-                    You recently searched for
-                    <button type="button" (click)="clearAll()">Clear All</button>
-                </p>
-                <div class="search" *ngFor="let recent of recentSearch; let i= index">
-                    <a routerLink="/home/{{recent.location}}">
-                    <h6>{{recent.location}}, {{recent.country}}</h6>
-                </a>
-                    <div class="temperature">
-                        <!-- <img [src]="getIcon(recent.description)" alt=""> -->
-                        <img [src]="recent.icon" alt="">
-                        <p *ngIf="degree">{{recent.temperature}} <span>&#176;C</span> </p>
-                        <p *ngIf="!degree">{{recent.tempFahrenite}} <span>&#176;F</span> </p>
-                        <p class="condition">{{recent.description | titlecase}}</p>
-                    </div>
-                    <span>
-                        <i (click)="onFavouriteAdd(recent)" class="icon-heart-empty" *ngIf="!favouriteAdded(i)"></i>
-                        <i (click)="removeFavourite(recent)" class="fa fa-heart" *ngIf="favouriteAdded(i)" [style.color] = "this.color"></i>
-                    </span>
-                </div>
-            </div>
+<div class="home-favourite">
+    <div *ngIf="!recentSearchhistory" class="emptyList">
+        <app-empty-list [message]="'No Recent Search'"></app-empty-list>
+    </div>
+    <div *ngIf="recentSearchhistory" class="favouriteCities">
+        <div class="favourites">
+            <p>You recently searched for</p>
+            <button type="button" (click)="clearAll()">Remove All</button>
         </div>
+        <app-lists [data]="data"></app-lists>
     </div>
 </div>

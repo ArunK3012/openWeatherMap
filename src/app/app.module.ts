@@ -13,6 +13,7 @@ import { RecentSearchComponent } from './components/recent-search/recent-search.
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { ListsComponent } from './components/lists/lists.component';
+import { EmptyListComponent } from './components/empty-list/empty-list.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ListsComponent } from './components/lists/lists.component';
     HomeComponent,
     FavouriteComponent,
     RecentSearchComponent,
-    ListsComponent
+    ListsComponent,
+    EmptyListComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +31,7 @@ import { ListsComponent } from './components/lists/lists.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   providers: [],
   bootstrap: [AppComponent]

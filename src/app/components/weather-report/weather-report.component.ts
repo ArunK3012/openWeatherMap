@@ -1,4 +1,3 @@
-import { environment } from './../../../environments/environment.prod';
 import { Weather } from '../../interface/weather';
 import { StorageServiceService } from './../../service/storage-service.service';
 import { WeatherserviceService } from './../../service/weatherservice.service';
@@ -48,7 +47,6 @@ export class WeatherReportComponent implements OnInit {
 
   ngOnInit(): void {
     const url = this.route.url.split('/').pop();
-
     if (url === 'favourite') {
       this.homeActive = false;
       this.favouritesActive = true;
@@ -95,7 +93,6 @@ export class WeatherReportComponent implements OnInit {
 
   closeAndRedirect(): void{
     document.getElementById('searchBar')?.setAttribute('style', 'display: none');
-    // this.route.navigateByUrl('/home');
   }
 
   sideBarOpen(): void {

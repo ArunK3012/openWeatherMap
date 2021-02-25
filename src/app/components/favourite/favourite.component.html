@@ -1,42 +1,16 @@
 <app-weather-report (cityNames)="displayCity($event)"></app-weather-report>
 
 <div class="home-favourite">
-
-
-    <div class="header-favourite">
-        <a href="/home">
-            <img class="arrow" src="../../../assets/left-arrow.png" alt=""></a>
-        <p>Favourites</p>
-        <img (click)="openSearch()" class="blackSearch" src="../../../assets/black_search.png" alt="">
+    <div *ngIf="data.length === 0" class="emptyList">
+        <app-empty-list [message]="'No Favourites added'"></app-empty-list>
     </div>
-    <div class="favouriteCities">
-        <div *ngIf="favouriteLength === 0" class="emptyList">
-            <img src="../../../assets/favourite.png" alt="">
-            <p>No Favourites added</p>
+    <div *ngIf="data.length > 0" class="favouriteCities">
+        <div class="favourites">
+            <p *ngIf="data.length == 1">{{data.length}} City added as favourite</p>
+            <p *ngIf="data.length >  1">{{data.length}} Cities added as favourite</p>
+            <button type="button" data-toggle="modal" data-target="#exampleModalCenter">Remove All</button>
         </div>
-        <div *ngIf="favouriteLength !== 0" class="favouriteList">
-            <p *ngIf="favouriteLength > 1">
-                {{favouriteLength}} Cities added as favourite
-                <button type="button" data-toggle="modal" data-target="#exampleModalCenter">Remove All</button>
-            </p>
-            <p *ngIf="favouriteLength === 1">
-                {{favouriteLength}} City added as favourite
-                <button type="button" data-toggle="modal" data-target="#exampleModalCenter">Remove All</button>
-            </p>
-            <!-- <div class="favourite" *ngFor="let favourite of favouriteList">
-                <h6>{{favourite.location}}, {{favourite.country}}</h6>
-                <div class="temperature">
-                    <img [src]="getIcon(favourite.description)" alt="">
-                    <img [src]="favourite.icon" alt="">
-                    <p *ngIf="degree">{{favourite.temperature}} <span>&#176;C</span> </p>
-                    <p *ngIf="!degree">{{favourite.tempFahrenite}} <span>&#176;F</span> </p>
-                    <p class="condition">{{favourite.description | titlecase}}</p>
-                </div>
-                <img class="image" (click)="removeFavourite(favourite.location)"
-                    src="../../../assets/favourite_Active.png" alt="">
-            </div> -->
-            <app-lists></app-lists>
-        </div>
+        <app-lists [data]="data"></app-lists>
     </div>
 </div>
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"

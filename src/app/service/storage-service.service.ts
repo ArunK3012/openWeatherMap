@@ -1,5 +1,4 @@
 import { Recent } from '../interface/recent';
-import { WeatherserviceService } from './weatherservice.service';
 import { Weather } from '../interface/weather';
 import { Injectable } from '@angular/core';
 
@@ -15,7 +14,7 @@ export class StorageServiceService {
   isFavourite = false;
   searchResponse: Weather[] = [];
 
-  constructor(private service: WeatherserviceService) { }
+  constructor() { }
 
   ngOnInIt(): void {
   }
@@ -24,18 +23,6 @@ export class StorageServiceService {
     this.apiResponse.unshift(data);
     this.displayResponse.push(data);
     localStorage.setItem('SearchHistory', JSON.stringify(this.apiResponse));
-  }
-
-  removeDup(data: any): void {
-    return data.filter((value: any, index: any) => data.indexOf(value) === index);
-  }
-
-  getSearchHistory(): any {
-    return this.apiResponse;
-  }
-
-  getRecentCity(): any {
-    const currentCity = JSON.parse(localStorage.getItem('SearchHistory') || '');
   }
 
   getCurrentCity(): any {

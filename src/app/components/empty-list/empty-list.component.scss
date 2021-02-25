@@ -1,0 +1,47 @@
+.emptyList {
+  position: absolute;
+  height: 100%;
+  width: calc(100vw - 17.4rem);
+
+  .error {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: auto;
+    text-align: center;
+
+    img {
+      margin-bottom: 1rem;
+    }
+
+    p {
+      color: white;
+      font-size: 18px;
+      line-height: 1.25rem;
+      text-align: center;
+      font-weight: 400;
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+
+  .emptyList {
+      width: 100%;
+
+    .error {
+      position: relative;
+      top: 14rem;
+
+      img {
+        position: relative;
+    left: -2%;
+      }
+
+      p {
+        left: -2%;
+      }
+    }
+  }
+}
