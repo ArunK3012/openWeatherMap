@@ -1,23 +1,35 @@
 @import '../../variables.scss';
 
-.container {
-  width: 100%;
-  height: 688px;
-  background-image: url('../../../assets/background.png');
-  font-family: 'Roboto', sans-serif;
+body {
+  font-family: "Roboto", sans-serif;
+  background: url('../../../assets/background.png') center center;
+  background-size: cover;
+  background-attachment: fixed;
+  height: 100vh;
+  width: 100vw;
+
 
   .header-favourite {
     display: none;
   }
 
+  // .container-fluid{
+
   .header {
     height: 110px;
-
-    .header-favourite {
-      display: none;
-    }
+    width: calc(100vw - 18rem);
+    position: relative;
+    left: 7.5rem;
+    top: 2rem;
 
     .input-group {
+      display: inline-flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .header-favourite {
+        display: none;
+      }
 
       .sideNavBar {
         display: none;
@@ -26,14 +38,13 @@
       img {
         width: 140px;
         height: 30px;
-        margin-top: 4%;
-        margin-left: 8%;
+        margin-left: 0% !important;
       }
 
       .form-outline {
         position: relative;
-        margin-left: 33%;
-        margin-top: 3%;
+        width: 36%;
+        text-align: right;
 
         .searchIcon {
           display: none;
@@ -43,8 +54,7 @@
           background-color: rgba(255, 255, 255, 0.2);
           border-radius: 3px;
           color: white;
-          border: 1px solid;
-          width: 400px;
+          width: 100%;
           height: 40px;
           border: 1px solid;
           border-color: rgba(255, 255, 255, 0.5);
@@ -64,77 +74,86 @@
         }
 
         img {
-          width: 20px;
-          height: 20px;
-          position: relative;
-          top: -63%;
-          left: 78%;
+          position: absolute;
+          right: 1rem;
+          top: 0.9rem;
+          width: 1.5rem;
+          height: 1.5rem;
         }
       }
     }
+
+    // }
   }
 
   .title {
-    position: relative;
-    margin-left: 8%;
     font-size: 14px;
-    margin-top: 1%;
+    height: 25px;
+    width: calc(100vw - 17.4rem);
+    position: absolute;
+    top: 9rem;
+    left: 7.5rem;
+    right: 7.5rem;
+    border-bottom: solid 1px rgba(255, 255, 255, 0.3);
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
 
-    button {
-      border: none;
-      z-index: 2;
-      border-bottom: 2px solid $bg-color;
-      color: $white;
-      font-size: 14px;
-      background-color: $bg-color;
-      margin-right: 2%;
+    .btn-router {
 
-      &:focus{
-        outline: none;
+      button {
+        border: none;
+        z-index: 2;
+        border-bottom: 2px solid $bg-color;
+        color: $white;
+        font-size: 14px;
+        background-color: $bg-color;
+        margin-right: 1rem;
+
+        &:focus {
+          outline: none;
+        }
+
+        &.active {
+          border-bottom: solid 2px $yellow;
+          color: #FFD639;
+        }
       }
 
-      &.active {
-        border-bottom: solid 2px $yellow;
-        color: #FFD639;
+      .home {
+        width: 4.3rem;
+        position: relative;
       }
-    }
 
-    .home {
-      width: 70px;
-    }
+      .favourite {
+        width: 6.25rem;
+        position: relative;
+      }
 
-    .favourite {
-      width: 100px;
-    }
-
-    .recent {
-      width: 140px;
+      .recent {
+        width: 8.75rem;
+        position: relative;
+      }
     }
 
     .date {
       position: relative;
-      top: -24px;
-      color: $white;
-      margin-left: 65%;
+      color: #FFFFFF;
+      text-align: right;
+      margin-right: 0.625rem;
+      margin-bottom: 0;
     }
-  }
-
-  .lineBar {
-    box-sizing: border-box;
-    width: 927px;
-    margin-left: 9%;
-    margin-top: -3.3%;
-    border: 1px solid $white;
   }
 
   #mySidebar {
     display: none;
   }
+
 }
 
 @media screen and (max-width: 400px) {
 
-  .container {
+  body {
     margin: 0%;
     padding: 0%;
     max-width: inherit;
@@ -183,12 +202,12 @@
       width: 100%;
       margin: 0;
       padding: 0;
+      left: 0;
 
       .input-group {
 
         img {
           position: relative;
-          top: 8px;
           left: 9%;
         }
 
@@ -217,8 +236,8 @@
           .searchIcon {
             display: block;
             position: relative;
-            top: 43%;
-            left: 16%;
+            top: 0.1rem;
+            left: 49%;
             width: 24px;
             height: 24px;
           }
@@ -303,17 +322,17 @@
 
       .arrow {
         width: 25px;
-        position: relative;
-        top: 3%;
-        left: 1%;
-        z-index: 2;
+    position: relative;
+    top: 3%;
+    left: 1rem;
+    z-index: 2;
       }
 
       input {
         position: relative;
         width: 66%;
         top: 4%;
-        left: 4%;
+        left: 2rem;
         height: 40px;
         border: none;
         border-style: none;
@@ -321,8 +340,8 @@
 
       .cancelSearch {
         position: relative;
-        left: 7%;
-        top: 3%;
+    left: 3rem;
+    top: 1.5rem;
       }
     }
 

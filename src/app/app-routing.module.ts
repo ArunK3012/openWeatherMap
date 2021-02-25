@@ -7,11 +7,11 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   { path: '', redirectTo: '/weather', pathMatch: 'full' },
-  { path: 'weather', component: WeatherReportComponent},
-    {path: 'recentSearch', component: RecentSearchComponent},
-    {path: 'favourite', component: FavouriteComponent},
-    { path: 'home', component: HomeComponent },
-    { path: 'home/:id', component: HomeComponent },
+  { path: 'weather', component: WeatherReportComponent },
+  { path: 'recentSearch', component: RecentSearchComponent },
+  { path: 'favourite', component: FavouriteComponent },
+  { path: 'home', component: HomeComponent },
+  { path: 'home/:id', component: HomeComponent },
 ];
 
 @NgModule({
