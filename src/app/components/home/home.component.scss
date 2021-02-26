@@ -199,13 +199,13 @@
       margin-top: 2rem;
       display: inline-flex;
       color: #FFFFFF;
-      margin-left: 3rem;
 
       .temperature {
         width: 14rem;
         margin-right: 1rem;
         height: 100%;
         min-width: 8rem;
+        margin-left: 1rem;
 
         p {
           position: relative;
@@ -314,6 +314,10 @@
   #mySidebar {
     display: none;
   }
+}
+
+.header-footer::-webkit-scrollbar{
+  display: none;
 }
 
 

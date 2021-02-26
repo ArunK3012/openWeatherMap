@@ -1,7 +1,4 @@
 <body>
-    <!-- <div class="container">
-    <div class="row"> -->
-    <!-- <div class="container-fluid"> -->
         <div class="header">
             <div class="input-group">
                 <a class="sideNavBar">
@@ -16,7 +13,6 @@
                 </div>
             </div>
         </div>
-    <!-- </div> -->
     <div *ngIf="favouritesActive" class="header-favourite">
         <a routerLink="/home">
             <img class="arrow" src="../../../assets/left-arrow.png" alt=""></a>
@@ -49,6 +45,4 @@
         <button routerLink="/favourite" (click)="sideBarClose()" class="favourite">Favourite</button>
         <button routerLink="/recentSearch" (click)="sideBarClose()" class="recent">Recent Search</button>
     </div>
-    <!-- </div>
-</div> -->
 </body>
