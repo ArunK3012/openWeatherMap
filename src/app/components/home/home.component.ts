@@ -16,8 +16,6 @@ import { Weather } from 'src/app/interface/weather';
 export class HomeComponent implements OnInit {
 
   location = '';
-  searchCityWeather = '';
-  search = '';
   temp = 'Add to favourite';
   color = '#ffffff';
   isFavourite = false;
@@ -34,11 +32,7 @@ export class HomeComponent implements OnInit {
   icon: any;
   description = '';
   country: any;
-  recentList: Recent[] = [];
-  favouriteList: Recent[] = [];
   myDate = new Date();
-  thumbnail: any;
-  response: any;
   APIResponse: Weather = {
     location: '',
     description: '',
@@ -205,7 +199,6 @@ export class HomeComponent implements OnInit {
         icon: this.icon, cityId: this.cityId,
       };
       this.storageService.isFavourite = true;
-      this.favouriteList.push(this.favourite);
       this.storageService.saveFavourites(this.favourite);
     }
   }
